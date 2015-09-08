@@ -32,9 +32,13 @@ PRODUCT_COPY_FILES += \
     device/sony/amami/rootdir/system/etc/sensor_def_qcomdev.conf:system/etc/sensor_def_qcomdev.conf \
     device/sony/amami/rootdir/system/etc/sensors_calib.conf:system/etc/sensors_calib.conf
 
-PRODUCT_NAME := aosp_d5503
+# Recovery
+PRODUCT_COPY_FILES += \
+    device/sony/amami/recovery/root/etc/bootrec-device:recovery/root/etc/bootrec-device
+
+PRODUCT_NAME := omni_amami
 PRODUCT_DEVICE := amami
-PRODUCT_MODEL := Xperia Z1 Compact (AOSP)
+PRODUCT_MODEL := Xperia Z1 Compact
 PRODUCT_BRAND := Sony
 PRODUCT_MANUFACTURER := Sony
 
@@ -45,3 +49,9 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=320 \
     ro.usb.pid_suffix=1A7
+
+# Inherit Omni GSM telephony parts
+$(call inherit-product, vendor/omni/config/gsm.mk)
+
+# Inherit Omni product configuration
+$(call inherit-product, vendor/omni/config/common.mk)
